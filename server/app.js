@@ -1,25 +1,17 @@
+// requires
 var express = require( 'express' );
-var app = express();
 var path = require( 'path' );
 var bodyParser = require( 'body-parser' );
-// create 'urlEncodedParser' in case we want to inject it for post calls:
-var urlEncodedParser = bodyParser.urlencoded( { extended: true } );
-// use bodyParser.urlencoded throughout the app with this:
-app.use( bodyParser.urlencoded( { extended: false } ) );
 
-app.set("port", (process.env.PORT || 5000));
+// create the app
+var app = express();
 
-jokes = [
-  {
-    whoseJoke: "Danny",
-    jokeQuestion: "Why do scuba divers fall backwards out of boats?",
-    punchLine: "If they fell forwards they’d still be in the boat"
-  },
-  {
-    whoseJoke: "Luke",
-    jokeQuestion: "Twofish are in a tank. What did one fish say to the other?",
-    punchLine: "Do you know how to drive this thing?"
-  },
+// uses bodyParser
+app.use( bodyParser.urlencoded({ extended: true }));
+app.use( express.static( 'server/public/' ) );
+
+// existing joke data
+var jokes = [
   {
     whoseJoke: "Millie",
     jokeQuestion: "What do you call a pile of cats?",
@@ -31,20 +23,20 @@ jokes = [
     punchLine: "Too many Cheetahs"
   },
   {
-    whoseJoke: "Scott",
-    jokeQuestion: "I went to the zoo the other day, it had one dog,",
-    punchLine: "It was a shih tzu."
+    whoseJoke: "Huck",
+    jokeQuestion: "What's the difference between roast beef and pea soup?",
+    punchLine: "Anyone can roast beef."
   }
 ];
 
+// serve base url
 app.get( '/', function( req, res ){
   // base url
   console.log( 'base url hit' );
   res.sendFile( path.resolve( 'server/public/views/index.html' ) );
 }); // end base url
 
-app.use( express.static( 'server/public/' ) );
-
-app.listen( app.get("port"), function(){
-  console.log( 'server up on: ', app.get("port") );
+// server listeing on port 3000
+app.listen( 3000, function(){
+  console.log( 'server up on port 3000' );
 }); // end spin up server
