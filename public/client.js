@@ -9,8 +9,10 @@ function docReady(){
 
 function addJoke(){
   console.log( 'addJokeButton on click');
+  // -- your code here --
 }// end addJokeButton on click
 
 function displayJokes() {
   console.log('displayJokes function');
+  // -- your code here --
 }// end displayJokes on click
