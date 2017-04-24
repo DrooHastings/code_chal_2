@@ -1,8 +1,16 @@
 console.log( 'js' );
 
-$( document ).ready( function(){
+$( document ).ready(docReady);
+
+function docReady(){
   console.log( 'JQ' );
-  $( '#addJokeButton' ).on( 'click', function(){
-    console.log( 'addJokeButton on click');
-  }); // end addJokeButton on click
-}); // end doc ready
+  $( '#addJokeButton' ).on( 'click', addJoke);
+}// end doc ready
+
+function addJoke(){
+  console.log( 'addJokeButton on click');
+}// end addJokeButton on click
+
+function displayJokes() {
+  console.log('displayJokes function');
+}// end displayJokes on click

@@ -1,14 +1,18 @@
 // requires
-var express = require( 'express' );
-var path = require( 'path' );
-var bodyParser = require( 'body-parser' );
+var express = require('express');
+var path = require('path');
+var bodyParser = require('body-parser');
 
 // create the app
 var app = express();
 
-// uses bodyParser
-app.use( bodyParser.urlencoded({ extended: true }));
-app.use( express.static( 'server/public/' ) );
+// use bodyParser
+app.use(bodyParser.urlencoded({extended: true}));
+
+// set up public as static folder
+// this will serve index.html by default,
+// so we don't need a route for that
+app.use(express.static('public'));
 
 // existing joke data
 var jokes = [
@@ -29,14 +33,13 @@ var jokes = [
   }
 ];
 
-// serve base url
-app.get( '/', function( req, res ){
-  // base url
-  console.log( 'base url hit' );
-  res.sendFile( path.resolve( 'server/public/views/index.html' ) );
-}); // end base url
+// -- your server code here --
+
+// a route to get the joke data
+
+// a route to post new joke data
 
 // server listeing on port 3000
-app.listen( 3000, function(){
-  console.log( 'server up on port 3000' );
+app.listen(3000, function(){
+  console.log('server up on port 3000');
 }); // end spin up server
