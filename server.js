@@ -36,8 +36,21 @@ var jokes = [
 // -- your server code here --
 
 // a route to get the joke data
+app.get('/getJokes', function(req, res){
+  console.log('in jokes get route, req.body= ', req.body);
+    var objToSend = {
+      allJokes: jokes
+    };
+
+  res.send(objToSend);
+});
 
 // a route to post new joke data
+app.post('/addJoke', function(req, res){
+  console.log('in addJoke POST route, req.body=', req.body);
+  jokes.push(req.body);
+  res.send (200);
+});
 
 // server listeing on port 3000
 app.listen(3000, function(){
